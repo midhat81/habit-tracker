@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habit Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>🎯 Habit Tracker</h1>
+            <p class="subtitle">Build better habits, one day at a time</p>
+        </header>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Habit Management Section -->
+            <section class="habit-section">
+                <h2>My Habits</h2>
+                <div class="habit-input-group">
+                    <input 
+                        type="text" 
+                        id="habitInput" 
+                        placeholder="Enter a new habit (e.g., Morning Exercise)"
+                        maxlength="50"
+                    >
+                    <button id="addHabitBtn">Add Habit</button>
+                </div>
+                <ul id="habitList" class="habit-list"></ul>
+            </section>
+
+            <!-- Calendar Section -->
+            <section class="calendar-section">
+                <div class="calendar-header">
+                    <button id="prevMonth">←</button>
+                    <h2 id="currentMonth">January 2026</h2>
+                    <button id="nextMonth">→</button>
+                </div>
+                <div id="calendar" class="calendar-grid"></div>
+            </section>
+
+            <!-- Statistics Section -->
+            <section class="stats-section">
+                <h2>📊 Statistics</h2>
+                <div id="statsContainer" class="stats-grid"></div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
