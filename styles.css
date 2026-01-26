@@ -28,6 +28,7 @@ header {
     color: white;
     padding: 40px;
     text-align: center;
+    position: relative;
 }
 
 header h1 {
@@ -287,4 +288,214 @@ h2 {
     .stats-grid {
         grid-template-columns: 1fr;
     }
+}
+
+/* ========================================
+   DARK MODE STYLES
+   ======================================== */
+
+/* Theme Toggle Button */
+.theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.theme-toggle .sun-icon {
+    display: block;
+}
+
+.theme-toggle .moon-icon {
+    display: none;
+}
+
+/* Dark Mode Activated */
+body.dark-mode {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+
+body.dark-mode .container {
+    background: #0f1419;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+}
+
+/* Dark Mode - Header */
+body.dark-mode header {
+    background: linear-gradient(135deg, #2d3561 0%, #1f2544 100%);
+}
+
+body.dark-mode header h1 {
+    color: #fff;
+}
+
+body.dark-mode .subtitle {
+    color: #e0e0e0;
+}
+
+/* Dark Mode - Theme Toggle */
+body.dark-mode .theme-toggle {
+    background: rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+body.dark-mode .theme-toggle:hover {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .theme-toggle .sun-icon {
+    display: none;
+}
+
+body.dark-mode .theme-toggle .moon-icon {
+    display: block;
+}
+
+/* Dark Mode - Main Content */
+body.dark-mode main {
+    background: #0f1419;
+}
+
+body.dark-mode h2 {
+    color: #8b9dc3;
+}
+
+/* Dark Mode - Input Fields */
+body.dark-mode #habitInput {
+    background: #1a1f2e;
+    border-color: #2d3561;
+    color: #e0e0e0;
+}
+
+body.dark-mode #habitInput::placeholder {
+    color: #6c757d;
+}
+
+body.dark-mode #habitInput:focus {
+    border-color: #667eea;
+    background: #1f2544;
+}
+
+/* Dark Mode - Buttons */
+body.dark-mode #addHabitBtn {
+    background: #667eea;
+}
+
+body.dark-mode #addHabitBtn:hover {
+    background: #5568d3;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+/* Dark Mode - Habit List */
+body.dark-mode .habit-item {
+    background: #1a1f2e;
+    color: #e0e0e0;
+}
+
+body.dark-mode .habit-item:hover {
+    background: #1f2544;
+}
+
+body.dark-mode .habit-item.selected {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+body.dark-mode .delete-btn {
+    background: #dc3545;
+}
+
+body.dark-mode .delete-btn:hover {
+    background: #c82333;
+}
+
+/* Dark Mode - Calendar */
+body.dark-mode .calendar-header button {
+    background: #667eea;
+}
+
+body.dark-mode .calendar-header button:hover {
+    background: #5568d3;
+}
+
+body.dark-mode #currentMonth {
+    color: #e0e0e0;
+}
+
+body.dark-mode .calendar-day {
+    background: #1a1f2e;
+    color: #e0e0e0;
+}
+
+body.dark-mode .calendar-day:hover {
+    background: #1f2544;
+}
+
+body.dark-mode .calendar-day.other-month {
+    opacity: 0.3;
+}
+
+body.dark-mode .calendar-day.completed {
+    background: #28a745;
+    color: white;
+}
+
+body.dark-mode .calendar-day.today {
+    border-color: #667eea;
+    background: #2d3561;
+}
+
+body.dark-mode .day-header {
+    color: #8b9dc3;
+    background: transparent;
+}
+
+/* Dark Mode - Statistics */
+body.dark-mode .stat-card {
+    background: linear-gradient(135deg, #2d3561 0%, #1f2544 100%);
+}
+
+body.dark-mode .stat-card h3 {
+    color: #b0b8c9;
+}
+
+body.dark-mode .stat-value {
+    color: #fff;
+}
+
+body.dark-mode .stat-label {
+    color: #b0b8c9;
+}
+
+/* Dark Mode - Empty State */
+body.dark-mode .empty-state {
+    color: #6c757d;
+}
+
+/* Smooth transitions for theme switching */
+body,
+.container,
+header,
+.habit-item,
+.calendar-day,
+.stat-card,
+#habitInput,
+h2 {
+    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }

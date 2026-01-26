@@ -309,3 +309,31 @@ function loadData() {
 
 // Start the app
 init();
+
+// ========================================
+// DARK MODE FUNCTIONALITY
+// ========================================
+
+// Dark Mode Toggle
+const themeToggle = document.getElementById('theme-toggle');
+
+// Check for saved theme preference or default to light mode
+const currentTheme = localStorage.getItem('theme') || 'light';
+if (currentTheme === 'dark') {
+    document.body.classList.add('dark-mode');
+}
+
+// Toggle theme on button click
+themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    
+    // Save theme preference to localStorage
+    const theme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+    localStorage.setItem('theme', theme);
+    
+    // Optional: Add a subtle animation feedback
+    themeToggle.style.transform = 'rotate(360deg)';
+    setTimeout(() => {
+        themeToggle.style.transform = 'rotate(0deg)';
+    }, 300);
+});
