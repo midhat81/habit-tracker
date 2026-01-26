@@ -337,3 +337,92 @@ themeToggle.addEventListener('click', () => {
         themeToggle.style.transform = 'rotate(0deg)';
     }, 300);
 });
+
+// ========================================
+// DATA EXPORT/IMPORT FUNCTIONALITY
+// ========================================
+
+const exportBtn = document.getElementById('exportBtn');
+const importBtn = document.getElementById('importBtn');
+const importFile = document.getElementById('importFile');
+
+// Export Data as JSON
+exportBtn.addEventListener('click', () => {
+    const data = {
+        habits: habits,
+        completions: completions,
+        selectedHabitId: selectedHabitId,
+        exportDate: new Date().toISOString(),
+        version: '1.0'
+    };
+    
+    const dataStr = JSON.stringify(data, null, 2);
+    const dataBlob = new Blob([dataStr], { type: 'application/json' });
+    
+    const url = URL.createObjectURL(dataBlob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `habit-tracker-backup-${new Date().toISOString().split('T')[0]}.json`;
+    
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+    
+    alert('✅ Data exported successfully!');
+});
+
+// Trigger File Input
+importBtn.addEventListener('click', () => {
+    importFile.click();
+});
+
+// Import Data from JSON
+importFile.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    
+    const reader = new FileReader();
+    
+    reader.onload = (event) => {
+        try {
+            const importedData = JSON.parse(event.target.result);
+            
+            // Validate data structure
+            if (!importedData.habits || !importedData.completions) {
+                throw new Error('Invalid backup file format');
+            }
+            
+            // Confirm before overwriting
+            const confirmImport = confirm(
+                '⚠️ This will replace all your current data. Are you sure?\n\n' +
+                `Backup contains ${importedData.habits.length} habits.\n` +
+                `Exported on: ${new Date(importedData.exportDate).toLocaleString()}`
+            );
+            
+            if (confirmImport) {
+                // Restore data
+                habits = importedData.habits;
+                completions = importedData.completions;
+                selectedHabitId = importedData.selectedHabitId || null;
+                
+                // Save to localStorage
+                saveData();
+                
+                // Refresh UI
+                renderHabits();
+                renderCalendar();
+                renderStats();
+                
+                alert('✅ Data imported successfully!');
+            }
+        } catch (error) {
+            alert('❌ Error importing data: ' + error.message);
+        }
+        
+        // Reset file input
+        importFile.value = '';
+    };
+    
+    reader.readAsText(file);
+});

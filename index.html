@@ -9,15 +9,27 @@
 <body>
     <div class="container">
         <!-- Header -->
-        <header>
-            <h1>🎯 Habit Tracker</h1>
-            <p class="subtitle">Build better habits, one day at a time</p>
-            <!-- Dark Mode Toggle Button -->
-            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
-                <span class="sun-icon">☀️</span>
-                <span class="moon-icon">🌙</span>
-            </button>
-        </header>
+<header>
+    <h1>🎯 Habit Tracker</h1>
+    <p class="subtitle">Build better habits, one day at a time</p>
+    
+    <!-- Dark Mode Toggle Button -->
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+        <span class="sun-icon">☀️</span>
+        <span class="moon-icon">🌙</span>
+    </button>
+    
+    <!-- Export/Import Buttons -->
+    <div class="data-controls">
+        <button id="exportBtn" class="control-btn" title="Export Data">
+            📥 Export
+        </button>
+        <button id="importBtn" class="control-btn" title="Import Data">
+            📤 Import
+        </button>
+        <input type="file" id="importFile" accept=".json" style="display: none;">
+    </div>
+</header>
 
         <!-- Main Content -->
         <main>
